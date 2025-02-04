@@ -12,7 +12,7 @@ from langchain_core.messages import merge_message_runs
 from langchain_core.messages import SystemMessage, HumanMessage
 
 from langchain_openai import ChatOpenAI
-
+from langchain_openai import AzureChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.store.base import BaseStore
@@ -138,7 +138,7 @@ class UpdateMemory(TypedDict):
     update_type: Literal['user', 'todo', 'instructions']
 
 # Initialize the model
-model = ChatOpenAI(model="gpt-4o", temperature=0)
+model = AzureChatOpenAI(model="gpt-4o", deployment_name="gpt-4o")
 
 ## Create the Trustcall extractors for updating the user profile and ToDo list
 profile_extractor = create_extractor(
